@@ -66,7 +66,7 @@ bomb_y = (bomb[0])
 bomb_x = (bomb[1])
 # bring up a plot of the environemt.  You can see the building dot at ~ 150,50
 matplotlib.pyplot.imshow(environment)
-matplotlib.pyplot.show()
+
 
 # Make the Agents
 for i in range(number_particles):
@@ -92,13 +92,13 @@ def move_nsew():
 
     
     if random.random() < north_percent:
-        agents[i][0] += 1
+        agents[i][0] -= 1
         
     elif random.random() > (north_percent) and random.random() < (north_percent + east_percent):
         agents[i][1] += 1
 
     elif random.random() > north_percent + east_percent and random.random() < (north_percent + east_percent + south_percent):
-        agents[i][0] -= 1
+        agents[i][0] += 1
             
     else:    
         agents[i][1] -= 1
@@ -113,7 +113,10 @@ for i in range(number_particles):
         elif agents [i][2] < 75:
             agents[i][2] -= 1
             move_nsew()
-            
-           
-print(agents)
 
+# plot particles on map            
+for i in range(number_particles):
+    matplotlib.pyplot.scatter(agents[i][1],agents[i][0])   
+matplotlib.pyplot.show() 
+   
+print(agents)
