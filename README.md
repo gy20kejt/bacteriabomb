@@ -26,6 +26,7 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 [Environment](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/wind.raster) This is a 300 x 300 pixel raster file containing the location of the bomb provided with the briefing 
 
+When the model is run, it produces a file titled "fallout.csv"
 ### License
 
 This model is licensed under the MIT License.
