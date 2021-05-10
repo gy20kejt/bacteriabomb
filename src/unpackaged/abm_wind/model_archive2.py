@@ -11,7 +11,7 @@ Created on Wed Apr 21 13:11:35 2021
 
 import csv
 import matplotlib.pyplot
-#import random
+import random
 import agentframework
 
 #create empty lists
@@ -40,19 +40,22 @@ bmap.close()
 bombloc = ([(index, row.index(buildingpos)) for index, row in enumerate(environment) 
        if buildingpos in row])
 
-#print(bombloc) # just to check there is a coordinate
+print(bombloc) # just to check there is a coordinate
 bomb = (bombloc[0]) # since it was a tuple in the list
 bomb_y = (bomb[0]) 
 bomb_x = (bomb[1])
+# bring up a plot of the environemt.  You can see the building dot at ~ 150,50
+matplotlib.pyplot.imshow(environment)
 
 
 # Make the Agents
 
 for i in range(number_particles):
-    agents.append(agentframework.Particle(environment))
+    agents.append(agentframework.Particle())
+
 
      
-# Lets try and make it fall and move.
+# Lets try and make it do both.
 
 for i in range(number_particles):
     while (agents[i].z > 0):    
@@ -63,19 +66,9 @@ for i in range(number_particles):
             agents[i].z -= 1
             agents[i].move_nsew()
 
-# try to mark in the environemnet where the particles have settled
-for i in range(number_particles):
-    agents[i].settle()
-    
-
-matplotlib.pyplot.imshow(environment)
-#plot particles on map       
+# plot particles on map            
 for i in range(number_particles):
     matplotlib.pyplot.scatter(agents[i].x,agents[i].y)   
 matplotlib.pyplot.show() 
    
-#Export CSV file with updated environement values
 
-with open('fallout.csv', 'w', newline='') as csvfile:
-    wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-    wr.writerow(environment)
