@@ -21,7 +21,7 @@ agents = []
 
 #create variables
 buildingpos = 255
-number_particles = 10
+number_particles = 5000
 
 #populate environment from reading in raster file
 
@@ -77,5 +77,5 @@ matplotlib.pyplot.show()
 #Export CSV file with updated environement values
 
 with open('fallout.csv', 'w', newline='') as csvfile:
-    wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-    wr.writerow(environment)
+    wr = csv.writer(csvfile, delimiter=' ')
+    wr.writerows(environment)
