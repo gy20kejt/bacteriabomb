@@ -10,9 +10,13 @@ Created on Wed Apr 21 13:11:35 2021
 #import nesc modules
 
 import csv
+import matplotlib
+matplotlib.use('TkAgg') 
+import tkinter
+import matplotlib.animation
 import matplotlib.pyplot
-#import random
 import agentframework
+
 
 #create empty lists
 environment = []
@@ -21,7 +25,7 @@ agents = []
 
 #create variables
 buildingpos = 255
-number_particles = 5000
+number_particles = 100
 
 #populate environment from reading in raster file
 
@@ -46,36 +50,70 @@ bomb_y = (bomb[0])
 bomb_x = (bomb[1])
 
 
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
+
 # Make the Agents
 
 for i in range(number_particles):
     agents.append(agentframework.Particle(environment))
 
+def update(frame_number):
+    fig.clear()
+
      
 # Lets try and make it fall and move.
 
-for i in range(number_particles):
-    while (agents[i].z > 0):    
-        if agents[i].z >= 75:
-            agents[i].move_fall()
-            agents[i].move_nsew()
-        elif agents [i].z < 75:
-            agents[i].z -= 1
-            agents[i].move_nsew()
+    for i in range(number_particles):
+        while (agents[i].z > 0):    
+            if agents[i].z >= 75:
+                agents[i].move_fall()
+                agents[i].move_nsew()
+            elif agents [i].z < 75:
+                agents[i].z -= 1
+                agents[i].move_nsew()
+   
+    
+    matplotlib.pyplot.rc('image', cmap='OrRd')
+    matplotlib.pyplot.imshow(environment)
+
+#plot particles on map     
+
+       
+    for i in range(number_particles):
+        matplotlib.pyplot.scatter(agents[i].x,agents[i].y)   
+
+
+#animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
+                   #             repeat = False, frames = number_particles)
+#matplotlib.pyplot.show()
 
 # try to mark in the environemnet where the particles have settled
 for i in range(number_particles):
-    agents[i].settle()
-    
-
-matplotlib.pyplot.imshow(environment)
-#plot particles on map       
-for i in range(number_particles):
-    matplotlib.pyplot.scatter(agents[i].x,agents[i].y)   
-matplotlib.pyplot.show() 
-   
+        agents[i].settle()
+ 
 #Export CSV file with updated environement values
 
 with open('fallout.csv', 'w', newline='') as csvfile:
-    wr = csv.writer(csvfile, delimiter=' ')
+    wr = csv.writer(csvfile, delimiter=',')
     wr.writerows(environment)
+#create function to run the model
+   
+def run():
+    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
+    repeat = False, frames = number_particles)
+    canvas.draw()
+
+#ccreate GUI
+
+root = tkinter.Tk()
+root.wm_title("Bacteria Bomb!")
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1) 
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)
+
+tkinter.mainloop()
