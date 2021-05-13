@@ -25,7 +25,7 @@ agents = []
 
 #create variables
 buildingpos = 255
-number_particles = 100
+number_particles = 5000
 
 #populate environment from reading in raster file
 
@@ -59,6 +59,7 @@ for i in range(number_particles):
     agents.append(agentframework.Particle(environment))
 
 def update(frame_number):
+    
     fig.clear()
 
      
@@ -78,15 +79,10 @@ def update(frame_number):
     matplotlib.pyplot.imshow(environment)
 
 #plot particles on map     
-
        
     for i in range(number_particles):
         matplotlib.pyplot.scatter(agents[i].x,agents[i].y)   
 
-
-#animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
-                   #             repeat = False, frames = number_particles)
-#matplotlib.pyplot.show()
 
 # try to mark in the environemnet where the particles have settled
 for i in range(number_particles):
@@ -97,6 +93,7 @@ for i in range(number_particles):
 with open('fallout.csv', 'w', newline='') as csvfile:
     wr = csv.writer(csvfile, delimiter=',')
     wr.writerows(environment)
+    
 #create function to run the model
    
 def run():
@@ -104,7 +101,7 @@ def run():
     repeat = False, frames = number_particles)
     canvas.draw()
 
-#ccreate GUI
+#create GUI
 
 root = tkinter.Tk()
 root.wm_title("Bacteria Bomb!")
@@ -113,7 +110,7 @@ canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 menu_bar = tkinter.Menu(root)
 root.config(menu=menu_bar)
 model_menu = tkinter.Menu(menu_bar)
-menu_bar.add_cascade(label="Model", menu=model_menu)
-model_menu.add_command(label="Run model", command=run)
+menu_bar.add_cascade(label="Bomb", menu=model_menu)
+model_menu.add_command(label="Detonate", command=run)
 
 tkinter.mainloop()
