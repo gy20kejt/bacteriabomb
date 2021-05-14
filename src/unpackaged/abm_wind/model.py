@@ -13,7 +13,6 @@ import csv
 import matplotlib
 matplotlib.use('TkAgg') 
 import tkinter
-import matplotlib.animation
 import matplotlib.pyplot
 import agentframework
 
@@ -26,7 +25,7 @@ agents = []
 #create variables
 buildingpos = 255
 number_particles = 5000
-
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
 #populate environment from reading in raster file
 
 bmap = open('wind.raster', newline='') 
@@ -49,22 +48,14 @@ bomb = (bombloc[0]) # since it was a tuple in the list
 bomb_y = (bomb[0]) 
 bomb_x = (bomb[1])
 
-
-fig = matplotlib.pyplot.figure(figsize=(7, 7))
-ax = fig.add_axes([0, 0, 1, 1])
-
 # Make the Agents
 
 for i in range(number_particles):
     agents.append(agentframework.Particle(environment))
 
-def update(frame_number):
     
-    fig.clear()
-
-     
 # Lets try and make it fall and move.
-
+def run():
     for i in range(number_particles):
         while (agents[i].z > 0):    
             if agents[i].z >= 75:
@@ -81,25 +72,24 @@ def update(frame_number):
 #plot particles on map     
        
     for i in range(number_particles):
-        matplotlib.pyplot.scatter(agents[i].x,agents[i].y)   
-
-
+        matplotlib.pyplot.scatter(agents[i].x,agents[i].y)  
+        
 # try to mark in the environemnet where the particles have settled
-for i in range(number_particles):
+    for i in range(number_particles):
         agents[i].settle()
+        
+    canvas.draw()
+
+
  
 #Export CSV file with updated environement values
-
-with open('fallout.csv', 'w', newline='') as csvfile:
-    wr = csv.writer(csvfile, delimiter=',')
-    wr.writerows(environment)
+def export_fallout():
+    with open('fallout.csv', 'w', newline='') as csvfile:
+        wr = csv.writer(csvfile, delimiter=',')
+        wr.writerows(environment)
     
 #create function to run the model
    
-def run():
-    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
-    repeat = False, frames = number_particles)
-    canvas.draw()
 
 #create GUI
 
@@ -112,5 +102,6 @@ root.config(menu=menu_bar)
 model_menu = tkinter.Menu(menu_bar)
 menu_bar.add_cascade(label="Bomb", menu=model_menu)
 model_menu.add_command(label="Detonate", command=run)
+model_menu.add_command(label="Export Data", command=export_fallout)
 
 tkinter.mainloop()
