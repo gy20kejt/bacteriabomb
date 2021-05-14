@@ -26,7 +26,12 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 [Environment](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/wind.raster) This is a 300 x 300 pixel raster file containing the location of the bomb provided with the briefing 
 
-When the model is run, it produces a file titled "fallout.csv"
+## Instructions
+
+To get the program to run, open up command prompt and type in "python model.py".   This will open up the program.  In the menu titled "Bomb", there are two option; Detonate and Export Data.  Detonate runs the model and Export Data exports the data to a csv file titled "fallout" into the models directory.  They must be run one after the other, else the exported data will just be the blank environment information save for the building.
+
+The program takes a few minutes to run.
+
 ### License
 
 This model is licensed under the MIT License.
