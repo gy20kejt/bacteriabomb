@@ -20,8 +20,6 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 ## Files
 
-Backup files are available on github as well as in the provided zipfile abm_wind folder.
-
 [Readme](https://github.com/gy20kejt/bacteriabomb/blob/main/README.md) You are reading this.
 
 [License](https://github.com/gy20kejt/bacteriabomb/blob/main/LICENSE) An MIT License for the model.
