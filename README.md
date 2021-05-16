@@ -36,6 +36,8 @@ To get the program to run, open up command prompt and type in "python model.py".
 
 The program may take a few minutes to run.
 
+Pydocs are available at command prompt "pydoc -w agentframework"
+
 ### License
 
 This model is licensed under the MIT License.
