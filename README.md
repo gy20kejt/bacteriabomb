@@ -20,6 +20,12 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 ## Files
 
+Backup files are available on github as well as in the provided zipfile abm_wind folder.
+
+[Readme](https://github.com/gy20kejt/bacteriabomb/blob/main/README.md) You are reading this.
+
+[License](https://github.com/gy20kejt/bacteriabomb/blob/main/LICENSE) An MIT License for the model.
+
 [Model](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/model.py) This is the main file that runs the program.
 
 [Agent Framework](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/agentframework.py) This is the basis for the agent 
@@ -30,7 +36,7 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 To get the program to run, open up command prompt and type in "python model.py".   This will open up the program.  In the menu titled "Bomb", there are two option; Detonate and Export Data.  Detonate runs the model and Export Data exports the data to a csv file titled "fallout" into the models directory.  They must be run one after the other, else the exported data will just be the blank environment information save for the building.
 
-The program takes a few minutes to run.
+The program may take a few minutes to run.
 
 ### License
 
