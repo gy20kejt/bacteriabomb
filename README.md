@@ -20,15 +20,15 @@ A basic algorithm is, for each particle, to move the particle up and along in a 
 
 ## Files
 
-[Readme](https://github.com/gy20kejt/bacteriabomb/blob/main/README.md) You are reading this.
+[Readme.md](https://github.com/gy20kejt/bacteriabomb/blob/main/README.md) You are reading this.
 
 [License](https://github.com/gy20kejt/bacteriabomb/blob/main/LICENSE) An MIT License for the model.
 
-[Model](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/model.py) This is the main file that runs the program.
+[Model.py](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/model.py) This is the main file that runs the program.
 
-[Agent Framework](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/agentframework.py) This is the basis for the agent 
+[Agentframework.py](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/agentframework.py) This is the basis for the agent 
 
-[Environment](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/wind.raster) This is a 300 x 300 pixel raster file containing the location of the bomb provided with the briefing 
+[Wind.raster](https://github.com/gy20kejt/bacteriabomb/blob/main/src/unpackaged/abm_wind/wind.raster) This is a 300 x 300 pixel raster file containing the location of the bomb provided with the briefing 
 
 ## Instructions
 

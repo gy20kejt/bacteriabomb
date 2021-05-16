@@ -45,8 +45,8 @@ bombloc = ([(index, row.index(buildingpos)) for index, row in enumerate(environm
 
 #print(bombloc) # just to check there is a coordinate
 bomb = (bombloc[0]) # since it was a tuple in the list
-bomb_y = (bomb[0]) 
-bomb_x = (bomb[1])
+bomb_y = (bomb[0]) # y coordinate
+bomb_x = (bomb[1]) # x coordinate
 
 # Make the Agents
 
@@ -54,42 +54,53 @@ for i in range(number_particles):
     agents.append(agentframework.Particle(environment))
 
     
-# Lets try and make it fall and move.
+# Lets try and make it fall and move and create function to run the model
 def run():
+    """
+    Runs the model
+
+    Returns:
+    None
+    """  
+
     for i in range(number_particles):
-        while (agents[i].z > 0):    
-            if agents[i].z >= 75:
+        while (agents[i].z > 0):    #move while still in above groundlevel
+            if agents[i].z >= 75:   #move up or down if over building height
                 agents[i].move_fall()
                 agents[i].move_nsew()
-            elif agents [i].z < 75:
+            elif agents [i].z < 75: #move down 1 when height below building height
                 agents[i].z -= 1
                 agents[i].move_nsew()
    
     
     matplotlib.pyplot.rc('image', cmap='OrRd')
     matplotlib.pyplot.imshow(environment)
-
+#print(agents) #Check that they have moved and all at height 0 (ground level)
 #plot particles on map     
        
     for i in range(number_particles):
         matplotlib.pyplot.scatter(agents[i].x,agents[i].y)  
         
-# try to mark in the environemnet where the particles have settled
+# Mark in the environment where the particles have settled
     for i in range(number_particles):
         agents[i].settle()
         
     canvas.draw()
-
-
  
 #Export CSV file with updated environement values
 def export_fallout():
+    """
+    Exports the fall out as a csv file
+
+    Returns:
+    None
+    """  
     with open('fallout.csv', 'w', newline='') as csvfile:
         wr = csv.writer(csvfile, delimiter=',')
         wr.writerows(environment)
-    
-#create function to run the model
-   
+
+
+
 
 #create GUI
 
